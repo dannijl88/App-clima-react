@@ -1,74 +1,18 @@
-import { useState } from "react"
+import { useFetch} from "./hooks/useFetch"
 import sun from "./assets/icons/sun.svg"
 import cloud from "./assets/icons/cloud.svg"
 import rain from "./assets/icons/rain.svg"
 import wind from "./assets/icons/wind.svg"
 import storm from "./assets/icons/storm.svg"
 
-interface Welcome {
-  weather: Weather[];
-  main:    Main;
-  name:    string;
-  wind:    Wind;
-}
 
-interface Wind {
-  speed: number; 
-}
-
-interface Main {
-  temp:       number;
-  feels_like: number;
-  temp_min:   number;
-  temp_max:   number;
-  pressure:   number;
-  humidity:   number;
-}
-
-interface Weather {
-  id:          number;
-  main:        string;
-  description: string;
-  icon:        string;
-}
 
 function App() {
-  const [data, setData] = useState<Welcome>({
-    weather: [
-      {
-        id: 200,
-        main: '',
-        description: '',
-        icon: '01d',
-      },
-    ],
-    main: {
-      temp: 0,
-      feels_like: 0,
-      temp_min: 0,
-      temp_max: 0,
-      pressure: 0,
-      humidity: 0,
-    },
-    name: "",
-    wind: {
-      speed: 0,
-    },
-  })
-  const [city, setCity] = useState("")
-  const API_KEY = "af8984956396371dd6f2f269166932f9"
-  const API:string =`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=es&units=metric`
-  
-  const getWeather = async () => {
-    const response = await fetch(API)
-    const data = await response.json()
-    console.log(data)
-    setData(data)
-  }
+  const {data, getWeather, setCity, city} = useFetch()
   
   return (
     <div className="bg-sky-600 h-screen flex flex-col gap-10 justify-center items-center">
-      <h1 className="text-center text-5xl text-white font-bold">App Clima React</h1>
+      <h1 className="text-center text-5xl text-white font-bold">Weather App React</h1>
       <div className="bg-gray-800 border-2 w-1/2 border-gray-200 p-4 rounded-lg">
         <form className="flex flex-col gap-2 mb-4" onSubmit={(e)=>{e.preventDefault();getWeather()}}>
           <input className="text-center h-10" required type="text" placeholder="Introduce Ciudad" onChange={(e)=>setCity(e.target.value)} />
