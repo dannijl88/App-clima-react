@@ -7,11 +7,9 @@ function useFetch() {
         name:    string;
         wind:    Wind;
     }
-
     interface Wind {
         speed: number; 
     }
-
     interface Main {
         temp:       number;
         feels_like: number;
@@ -20,7 +18,6 @@ function useFetch() {
         pressure:   number;
         humidity:   number;
     }
-
     interface Weather {
         id:          number;
         main:        string;
