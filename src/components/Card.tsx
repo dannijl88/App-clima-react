@@ -7,9 +7,9 @@ import storm from "../assets/icons/storm.svg"
 export const Card = ({ city, data }) => {
     
     return (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap flex-col md:flex-row">
             {city && 
-                <div className="w-1/2 flex flex-col gap-2 text-white text-xl">  
+                <div className="md:w-1/2 flex flex-col flex-wrap gap-2 text-white text-xl">  
                     <h2 className="text-white text-5xl text-center">{city && data.name}</h2>
                     <p className="text-center text-5xl font-bold">
                         {data.main.temp} ºC
@@ -36,7 +36,7 @@ export const Card = ({ city, data }) => {
             }
             {
             city &&
-                <div className="w-1/2 flex flex-col gap-2 text-white text-xl border-l-2 items-center">
+                <div className="md:w-1/2 flex flex-col gap-2 text-white text-xl md:border-l-2 items-center">
                     <p>
                         Sensación térmica: {data.main.feels_like} ºC
                     </p>
